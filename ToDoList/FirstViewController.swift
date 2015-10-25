@@ -35,5 +35,9 @@ class FirstViewController: UIViewController, UITableViewDelegate {
         return cell
     }
 
+    override func viewDidAppear(animated: Bool) {
+    
+        toDoListTable.reloadData()
+    }
 }
 
