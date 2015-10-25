@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
 
     
     
@@ -18,11 +18,13 @@ class SecondViewController: UIViewController {
         
         toDoList.append(item.text)
         item.text = ""
+        NSUserDefaults.standardUserDefaults().setObject(toDoList, forKey: "toDoList")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.item.delegate = self;
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,9 +36,9 @@ class SecondViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(textField: UITextField!) -> Bool {
-        item.resignFirstResponder()
-        return true
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
 
